@@ -267,7 +267,16 @@ server:
   # volumeMounts is a list of volumeMounts for the main server container. These are rendered
   # via toYaml rather than pre-processed like the extraVolumes value.
   # The purpose is to make it easy to share volumes between containers.
-  volumeMounts: null
+  volumeMounts: 
+    - name: vault
+      flexVolume:
+        driver: "fstab/cifs"
+        fsType: "cifs"
+        secretRef:
+          name: "cifs-secret-test"
+        options:
+          networkPath: "//store/ThinkBigLogs/test"
+          mountOptions: "dir_mode=0755,file_mode=0644,noperm"
   #   - mountPath: /usr/local/libexec/vault
   #     name: plugins
   #     readOnly: true
