@@ -260,14 +260,7 @@ server:
   # volumes is a list of volumes made available to all containers. These are rendered
   # via toYaml rather than pre-processed like the extraVolumes value.
   # The purpose is to make it easy to share volumes between containers.
-  volumes: null
-  #   - name: plugins
-  #     emptyDir: {}
-
-  # volumeMounts is a list of volumeMounts for the main server container. These are rendered
-  # via toYaml rather than pre-processed like the extraVolumes value.
-  # The purpose is to make it easy to share volumes between containers.
-  volumeMounts: 
+  volumes: 
     - name: vault
       flexVolume:
         driver: "fstab/cifs"
@@ -277,7 +270,17 @@ server:
         options:
           networkPath: "//store/ThinkBigLogs/test"
           mountOptions: "dir_mode=0755,file_mode=0644,noperm"
-        mountPath: /usr/local/libexec/vault
+      #
+  #   - name: plugins
+  #     emptyDir: {}
+
+  # volumeMounts is a list of volumeMounts for the main server container. These are rendered
+  # via toYaml rather than pre-processed like the extraVolumes value.
+  # The purpose is to make it easy to share volumes between containers.
+  volumeMounts:
+    - mountPath: /usr/local/libexec/vault
+      name: vault
+      readOnly: false
   #     name: plugins
   #     readOnly: true
 
