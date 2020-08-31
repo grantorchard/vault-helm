@@ -277,7 +277,7 @@ server:
         options:
           networkPath: "//store/ThinkBigLogs/test"
           mountOptions: "dir_mode=0755,file_mode=0644,noperm"
-  #   - mountPath: /usr/local/libexec/vault
+        mountPath: /usr/local/libexec/vault
   #     name: plugins
   #     readOnly: true
 
